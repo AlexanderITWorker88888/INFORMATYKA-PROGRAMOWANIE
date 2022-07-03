@@ -1,22 +1,61 @@
-/* Analiza obwodu elektrycznego - analiza_obwodu.c */
-#include <stdio.h>
-#include <stdlib.h>
+void los(int ilosc, int zakres);
 
-int main() {
-    double E1=5, E2=3, E3=4,
-           R1=2, R2=4, R3=12, R4=8,
-           i1, i2, i3, i4, P,
-           W, W1, W2;
+int main()
+{
+	int w = 0;
 
-           W =(R1+R4)*(-R2-R4)-(-R4)*R4;
-           W1=E1*(-R2-R4)-(-R4)*(-E2);
-           W2=(R1+R4)*(-E2)-E1*R4;
-           i1=W1/W;
-           i2=W2/W;
-           i3=(E1+E2+E3)/R3;
-           i4=i1-i2;
-           P=R1*i1*i1+R2*i2*i2+R3*i3*i3+R4*i4*i4;
-    printf("Prady galeziowe:\ni1 =%6.2f A\ni2 =%6.2f A\ni3 =%6.2f A\ni4 =%6.2f A\n", i1, i2, i3, i4);
-    printf("\nWydzielana moc calkowita %6.2f W\n\n", P);
-    return 0;
+	while(w != 4)
+	{
+		printf("1 - Duzy lotek\n2 - Maly lotek\n3 - multi lotek\n4 - wyjscie\n");
+		scanf("%d", &w);
+
+		switch(w)
+		{
+			case 1:
+				los(6, 49);
+				break;
+
+			case 2:
+				los(5, 75);
+				break;
+
+			case 3:
+				los(10, 80);
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	return 0;
 }
+
+void los(int ilosc, int zakres)
+{
+	int *liczby = new int[ilosc];
+
+	srand(time(0));
+
+	for(int i = 0; i < ilosc; i++)
+	{
+		liczby[i] = (rand() % zakres) + 1;
+
+		for(int j = 0; j < i; j++)
+		{
+			if(liczby[i] == liczby[j])
+			{
+				--i;
+				break;
+			}
+		}
+	}
+
+	for(int i = 0; i < ilosc; i++)
+		printf("%d ", liczby[i]);
+
+	printf("\n");
+
+	delete [] liczby;
+}
+
