@@ -1,61 +1,35 @@
-void los(int ilosc, int zakres);
+/* Liczby do toto-lotka */
 
-int main()
-{
-	int w = 0;
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-	while(w != 4)
-	{
-		printf("1 - Duzy lotek\n2 - Maly lotek\n3 - multi lotek\n4 - wyjscie\n");
-		scanf("%d", &w);
-
-		switch(w)
-		{
-			case 1:
-				los(6, 49);
-				break;
-
-			case 2:
-				los(5, 75);
-				break;
-
-			case 3:
-				los(10, 80);
-				break;
-
-			default:
-				break;
-		}
-	}
-
-	return 0;
+int main() {
+    int a1=0,a2=0,a3=0,a4=0,a5=0,
+        liczba, numer, nowa;
+    srand(time(NULL));
+    numer = 0;
+    nowa = 0;
+    printf("Liczby do toto-lotka: ");
+    while ( numer<6 ) {
+        liczba = rand() % 49 + 1;
+        nowa=0;
+        if (liczba!=a1 && liczba!=a2 && liczba!=a3 && liczba!=a4 && liczba!=a5)
+            nowa = 1;
+        if (nowa) {
+            printf("   %d", liczba);
+            numer=numer+1;
+            if (numer==1) a1=liczba;
+            else
+            if (numer==2) a2=liczba;
+            else
+            if (numer==3) a3=liczba;
+            else
+            if (numer==4) a4=liczba;
+            else
+            if (numer==5) a5=liczba;
+        }
+    }
+    printf("\n");
+    return 0;
 }
-
-void los(int ilosc, int zakres)
-{
-	int *liczby = new int[ilosc];
-
-	srand(time(0));
-
-	for(int i = 0; i < ilosc; i++)
-	{
-		liczby[i] = (rand() % zakres) + 1;
-
-		for(int j = 0; j < i; j++)
-		{
-			if(liczby[i] == liczby[j])
-			{
-				--i;
-				break;
-			}
-		}
-	}
-
-	for(int i = 0; i < ilosc; i++)
-		printf("%d ", liczby[i]);
-
-	printf("\n");
-
-	delete [] liczby;
-}
-
