@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
-{
-    srand( time( NULL ) );
-    int tablica[ 5 ];
-      "Totolotek!" << endl << endl;
-    for( int i = 0; i < 6; i++ )
-    {
-        tablica[ i ] = rand() % 49 + 1;
-        cout << tablica[ i ] << " ";
-    }
+int main() {
+int liczba, n = 7;
+while (n) {
+printf(‘‘Liczba do toto-lotka: %d’’,
+rand() % 49 + 1);
+n = n-1;
+}
+return 1;
 }
